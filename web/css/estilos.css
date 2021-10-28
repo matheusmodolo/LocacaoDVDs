@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: Verdana,Arial,Helvetica,sans-serif;
     font-size: 14px;
@@ -5,7 +9,7 @@ body {
 }
 
 a{
-    color: #0484AE;
+    color: #FF4500;
     text-decoration: none;
     font-weight: bold;
 }
@@ -15,12 +19,13 @@ a:hover {
     text-decoration: underline;
 }
 
+
 .tabelaListagem {
     background: #000000;
 }
 
 .tabelaListagem th {
-    background: #EEEEEE;
+    background: #FFF8DC;
     padding: 5px;
 }
 

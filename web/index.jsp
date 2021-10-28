@@ -18,16 +18,16 @@
         <h1>Sistema para Cadastro de DVD's</h1>
 
         <p>
-            <a href="${cp}/formularios/dvds/listagem.jsp">DVD's</a>
+            <a href="${cp}/formularios/dvds/listagem.jsp"><h3>DVD's</h3></a>
         </p>
         <p>
-            <a href="${cp}/formularios/ator/listagem.jsp">Atores</a>
+            <a href="${cp}/formularios/ator/listagem.jsp"><h3>Atores</h3></a>
         </p>
         <p>
-            <a href="${cp}/formularios/genero/listagem.jsp">Gêneros</a>
+            <a href="${cp}/formularios/genero/listagem.jsp"><h3>Gêneros</h3></a>
         </p>
         <p>
-            <a href="${cp}/formularios/classificacao/listagem.jsp">Classificações</a>
+            <a href="${cp}/formularios/classificacao/listagem.jsp"><h3>Classificações</h3></a>
         </p>
 
     </body>

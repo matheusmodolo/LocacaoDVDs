@@ -120,12 +120,14 @@ public class DVDsDAO extends DAO<DVDs> {
                 + " genero g, "
                 + " classificacao c "
                 + "WHERE"
-                + " d.atorprincipal_id = ap.id AND "
-                + " d.atorcoadjuvante_id = ac.id AND "
-                + " d.genero_id = g.id AND "
-                + " d.classificacao_id = c.id "
-                + "ORDER BY d.titulo, d.dataLancamento;");
+                //+ " d.id = ? AND"
+                + " d.atorprincipal_id = ap.id AND"
+                + " d.atorcoadjuvante_id = ac.id AND"
+                + " d.genero_id = g.id AND"
+                + " d.classificacao_id = c.id;");
 
+        //ERRO AQUI
+        //stmt.setInt( 1, id );
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
@@ -182,7 +184,7 @@ public class DVDsDAO extends DAO<DVDs> {
         Ator ac = null;
 
         PreparedStatement stmt = getConnection().prepareStatement(
-                "SELECT"
+                "SELECT * FROM dvds "
                 + " d.id idDVD, "
                 + " d.titulo tituloDVD, "
                 + " d.anoLancamento anoLancamentoDVD, "
@@ -211,6 +213,7 @@ public class DVDsDAO extends DAO<DVDs> {
                 + " d.atorCoadjuvante_id = ac.id AND"
                 + " d.genero_id = g.id AND"
                 + " d.classificacao_id = c.id "
+                + " id = ?"//
                 + "ORDER BY d.titulo, d.dataLancamento;");
 
         stmt.setInt(1, id);
