@@ -44,7 +44,7 @@ public class ClassificacaoServlet extends HttpServlet {
 
                 int id = Integer.parseInt(request.getParameter("id"));
                 String descricao = request.getParameter("descricao");
-
+                
                 Classificacao c = new Classificacao();
                 c.setId(id);
                 c.setDescricao(descricao);

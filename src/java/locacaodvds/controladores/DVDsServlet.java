@@ -45,11 +45,13 @@ public class DVDsServlet extends HttpServlet {
 
                 int idGenero = Integer.parseInt(
                         request.getParameter("idGenero"));
+
                 Genero g = new Genero();
                 g.setId(idGenero);
 
                 int idClassificacao = Integer.parseInt(
                         request.getParameter("idClassificacao"));
+
                 Classificacao c = new Classificacao();
                 c.setId(idClassificacao);
 
@@ -81,36 +83,24 @@ public class DVDsServlet extends HttpServlet {
 
             } else if (acao.equals("alterar")) {
 
-                int id = Integer.parseInt(request.getParameter("id"));
-                String titulo = request.getParameter("titulo");
-                String anoLancamento = request.getParameter("anoLancamento");
                 String dataLancamento = request.getParameter("dataLancamento");
-                String duracao = request.getParameter("duracao");
-                int idGenero = Integer.parseInt(
-                        request.getParameter("idgenero"));
-                int idClassificacao = Integer.parseInt(
-                        request.getParameter("idClassificacao"));
-                int idAtorPrincipal = Integer.parseInt(
-                        request.getParameter("idAtorPrincipal"));
-                int idAtorCoadjuvante = Integer.parseInt(
-                        request.getParameter("idAtorCoadjuvante"));
 
                 Genero g = new Genero();
-                g.setId(idGenero);
+                g.setId(Integer.parseInt(request.getParameter("idGenero")));
                 Classificacao c = new Classificacao();
-                c.setId(idClassificacao);
+                c.setId(Integer.parseInt(request.getParameter("idClassificacao")));
                 Ator ap = new Ator();
-                ap.setId(idAtorPrincipal);
+                ap.setId(Integer.parseInt(request.getParameter("idAtorPrincipal")));
                 Ator ac = new Ator();
-                ac.setId(idAtorCoadjuvante);
+                ac.setId(Integer.parseInt(request.getParameter("idAtorCoadjuvante")));
 
                 DVDs d = new DVDs();
-                d.setId(id);
-                d.setTitulo(titulo);
-                d.setAnoLancamento(anoLancamento);
+                d.setId(Integer.parseInt(request.getParameter("id")));
+                d.setTitulo(request.getParameter("titulo"));
+                d.setAnoLancamento(request.getParameter("anoLancamento"));
                 d.setDataLancamento(Date.valueOf(
                         LocalDate.parse(dataLancamento, dtf)));
-                d.setDuracao(duracao);
+                d.setDuracao(request.getParameter("duracao"));
                 d.setGenero(g);
                 d.setClassificacao(c);
                 d.setAtorPrincipal(ap);
@@ -123,10 +113,8 @@ public class DVDsServlet extends HttpServlet {
 
             } else if (acao.equals("excluir")) {
 
-                int id = Integer.parseInt(request.getParameter("id"));
-
                 DVDs d = new DVDs();
-                d.setId(id);
+                d.setId(Integer.parseInt(request.getParameter("id")));
 
                 dao.excluir(d);
 

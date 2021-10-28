@@ -26,8 +26,8 @@
                 <tr>
                     <td class="alinharDireita">Descrição: </td>
                     <td>
-                        <input name="nome"
-                               type="text
+                        <input name="descricao"
+                               type="text"
                                size="20"
                                maxlength="30"
                                value="${requestScope.classificacao.descricao}"/>

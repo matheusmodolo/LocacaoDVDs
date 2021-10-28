@@ -13,6 +13,7 @@ import locacaodvds.entidades.Genero;
 public class DVDsDAO extends DAO<DVDs> {
 
     public DVDsDAO() throws SQLException {
+        super();
     }
 
     @Override
@@ -79,9 +80,7 @@ public class DVDsDAO extends DAO<DVDs> {
     public void excluir(DVDs obj) throws SQLException {
 
         PreparedStatement stmt = getConnection().prepareStatement(
-                "DELETE FROM dvds "
-                + "WHERE"
-                + " id = ?;");
+                "DELETE FROM dvds WHERE id = ?;");
 
         stmt.setInt(1, obj.getId());
 
@@ -120,14 +119,12 @@ public class DVDsDAO extends DAO<DVDs> {
                 + " genero g, "
                 + " classificacao c "
                 + "WHERE"
-                //+ " d.id = ? AND"
                 + " d.atorprincipal_id = ap.id AND"
                 + " d.atorcoadjuvante_id = ac.id AND"
                 + " d.genero_id = g.id AND"
-                + " d.classificacao_id = c.id;");
+                + " d.classificacao_id = c.id"
+                + " ORDER BY d.titulo, d.dataLancamento, d.duracao;");
 
-        //ERRO AQUI
-        //stmt.setInt( 1, id );
         ResultSet rs = stmt.executeQuery();
 
         while (rs.next()) {
@@ -178,13 +175,14 @@ public class DVDsDAO extends DAO<DVDs> {
     public DVDs obterPorId(int id) throws SQLException {
 
         DVDs d = null;
+
         Genero g = null;
         Classificacao c = null;
         Ator ap = null;
         Ator ac = null;
 
         PreparedStatement stmt = getConnection().prepareStatement(
-                "SELECT * FROM dvds "
+                "SELECT"
                 + " d.id idDVD, "
                 + " d.titulo tituloDVD, "
                 + " d.anoLancamento anoLancamentoDVD, "
@@ -213,10 +211,7 @@ public class DVDsDAO extends DAO<DVDs> {
                 + " d.atorCoadjuvante_id = ac.id AND"
                 + " d.genero_id = g.id AND"
                 + " d.classificacao_id = c.id "
-                + " id = ?"//
-                + "ORDER BY d.titulo, d.dataLancamento;");
-
-        stmt.setInt(1, id);
+                + "ORDER BY d.titulo, d.dataLancamento, d.duracao;");
 
         ResultSet rs = stmt.executeQuery();
 

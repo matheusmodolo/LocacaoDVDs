@@ -135,7 +135,7 @@
                             scope="page"
                             class="locacaodvds.servicos.AtorServices"/>
 
-                        <select name="idClassificacao" required>
+                        <select name="idAtorPrincipal" required>
                             <c:forEach items="${atorprincipalservicos.todos}" var="atorPrincipal">
                                 <c:choose>
                                     <c:when test="${requestScope.dvds.atorPrincipal.id eq atorPrincipal.id}">
@@ -162,7 +162,7 @@
                             scope="page"
                             class="locacaodvds.servicos.AtorServices"/>
 
-                        <select name="idClassificacao" required>
+                        <select name="idAtorCoadjuvante" required>
                             <c:forEach items="${atorcoadjuvanteservicos.todos}" var="atorCoadjuvante">
                                 <c:choose>
                                     <c:when test="${requestScope.dvds.atorCoadjuvante.id eq atorCoadjuvante.id}">
