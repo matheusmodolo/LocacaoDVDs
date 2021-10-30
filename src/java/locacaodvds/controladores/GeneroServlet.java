@@ -35,21 +35,16 @@ public class GeneroServlet extends HttpServlet {
                 Genero g = new Genero();
                 g.setDescricao(descricao);
 
-                /*if (validarGenero(g) == true) {
-
+                if (validarGenero(g) == true) {
                     dao.salvar(g);
 
-                    disp = request.getRequestDispatcher("/formularios/genero/listagem.jsp");
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Generos/listagem.jsp");
                 } else {
-
                     request.setAttribute("genero", g);
-
-                    disp = request.getRequestDispatcher("/formularios/genero/erro.jsp");
-                }*/
-                dao.salvar(g);
-
-                disp = request.getRequestDispatcher(
-                        "/formularios/genero/listagem.jsp");
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Generos/erro.jsp");
+                }
 
             } else if (acao.equals("alterar")) {
 
@@ -60,19 +55,17 @@ public class GeneroServlet extends HttpServlet {
                 g.setId(id);
                 g.setDescricao(descricao);
 
-                /*if (validarGenero(g) == true) {
-
+                if (validarGenero(g) == true) {
                     dao.atualizar(g);
 
-                    disp = request.getRequestDispatcher("/formularios/genero/listagem.jsp");
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Generos/listagem.jsp");
                 } else {
-
                     request.setAttribute("genero", g);
-                    disp = request.getRequestDispatcher("/formularios/genero/erro.jsp");
-                }*/
-                dao.atualizar(g);
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Generos/erro.jsp");
+                }
 
-                disp = request.getRequestDispatcher("/formularios/genero/listagem.jsp");
 
             } else if (acao.equals("excluir")) {
 
@@ -118,15 +111,17 @@ public class GeneroServlet extends HttpServlet {
         }
     }
 
-    /*private boolean validarGenero(Genero valEst) {
-
-        boolean passa = true;
-        String n = valEst.getDescricao();
-        if (n.length() <= 0) {
-            passa = false;
+    public boolean validarGenero(Genero g) {
+        boolean v = true;
+                
+        String d = g.getDescricao();
+        
+        if(d.length() > 30 || d.length() <= 0){
+            v = false;
         }
-        return passa;
-    }*/
+        
+        return v;
+    }
 
     @Override
     protected void doGet(

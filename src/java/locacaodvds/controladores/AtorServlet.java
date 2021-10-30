@@ -42,10 +42,16 @@ public class AtorServlet extends HttpServlet {
                 a.setNome(nome);
                 a.setSobrenome(sobrenome);
                 a.setDataEstreia(Date.valueOf(LocalDate.parse(dataEstreia, dtf)));
+                if (validarAtor(a) == true) {
+                    dao.salvar(a);
 
-                dao.salvar(a);
-
-                disp = request.getRequestDispatcher("/formularios/ator/listagem.jsp");
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Atores/listagem.jsp");
+                } else {
+                    request.setAttribute("ator", a);
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Atores/erro.jsp");
+                }
 
             } else if (acao.equals("alterar")) {
 
@@ -60,9 +66,16 @@ public class AtorServlet extends HttpServlet {
                 a.setSobrenome(sobrenome);
                 a.setDataEstreia(Date.valueOf(LocalDate.parse(dataEstreia, dtf)));
 
-                dao.atualizar(a);
+                if (validarAtor(a) == true) {
+                    dao.atualizar(a);
 
-                disp = request.getRequestDispatcher("/formularios/ator/listagem.jsp");
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Atores/listagem.jsp");
+                } else {
+                    request.setAttribute("ator", a);
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Atores/erro.jsp");
+                }
 
             } else if (acao.equals("excluir")) {
 
@@ -105,6 +118,28 @@ public class AtorServlet extends HttpServlet {
         if (disp != null) {
             disp.forward(request, response);
         }
+    }
+
+    public boolean validarAtor(Ator a) {
+
+        boolean v = true;
+        String r = a.getNome();
+        String s = a.getSobrenome();
+        Date d = a.getDataEstreia();
+
+        if (r.length() > 30 || r.length() <= 0) {
+            v = false;
+        }
+
+        if (s.length() > 30 || s.length() <= 0) {
+            v = false;
+        }
+
+        if (d == null) {
+            v = false;
+        }
+
+        return v;
     }
 
     @Override

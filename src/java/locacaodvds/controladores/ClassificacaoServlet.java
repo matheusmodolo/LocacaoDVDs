@@ -20,7 +20,7 @@ public class ClassificacaoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String acao = request.getParameter("acao");
-        
+
         ClassificacaoDAO dao = null;
         RequestDispatcher disp = null;
 
@@ -35,23 +35,36 @@ public class ClassificacaoServlet extends HttpServlet {
                 Classificacao c = new Classificacao();
                 c.setDescricao(descricao);
 
-                dao.salvar(c);
+                if (validarClassificacao(c) == true) {
+                    dao.salvar(c);
 
-                disp = request.getRequestDispatcher(
-                        "/formularios/classificacao/listagem.jsp");
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Classificacoes/listagem.jsp");
+                } else {
+                    request.setAttribute("classificacao", c);
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Classificacoes/erro.jsp");
+                }
 
             } else if (acao.equals("alterar")) {
 
                 int id = Integer.parseInt(request.getParameter("id"));
                 String descricao = request.getParameter("descricao");
-                
+
                 Classificacao c = new Classificacao();
                 c.setId(id);
                 c.setDescricao(descricao);
 
-                dao.atualizar(c);
+                if (validarClassificacao(c) == true) {
+                    dao.atualizar(c);
 
-                disp = request.getRequestDispatcher("/formularios/classificacao/listagem.jsp");
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Classificacoes/listagem.jsp");
+                } else {
+                    request.setAttribute("classificacao", c);
+                    disp = request.getRequestDispatcher(
+                            "/formularios/Classificacoes/erro.jsp");
+                }
 
             } else if (acao.equals("excluir")) {
 
@@ -94,6 +107,18 @@ public class ClassificacaoServlet extends HttpServlet {
         if (disp != null) {
             disp.forward(request, response);
         }
+    }
+
+    public boolean validarClassificacao(Classificacao c) {
+        boolean v = true;
+
+        String d = c.getDescricao();
+
+        if (d.length() > 30 || d.length() <= 0) {
+            v = false;
+        }
+
+        return v;
     }
 
     @Override

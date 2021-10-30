@@ -183,35 +183,35 @@ public class DVDsDAO extends DAO<DVDs> {
 
         PreparedStatement stmt = getConnection().prepareStatement(
                 "SELECT"
-                + " d.id idDVD, "
-                + " d.titulo tituloDVD, "
-                + " d.anoLancamento anoLancamentoDVD, "
-                + " d.dataLancamento dataLancamentoDVD, "
-                + " d.duracao duracaoDVD, "
-                + " g.id idGenero, "
-                + " g.descricao descricaoGenero, "
-                + " c.id idClassificacao, "
-                + " c.descricao descricaoClassificacao, "
-                + " ap.id idAtorPrincipal, "
-                + " ap.nome nomeAtorPrincipal, "
-                + " ap.sobrenome sobrenomeAtorPrincipal, "
-                + " ap.dataEstreia dataEstreiaAtorPrincipal, "
-                + " ac.id idAtorCoadjuvante, "
-                + " ac.nome nomeAtorCoadjuvante, "
-                + " ac.sobrenome sobrenomeAtorCoadjuvante, "
-                + " ac.dataEstreia dataEstreiaAtorCoadjuvante "
-                + "FROM"
-                + " dvds d, "
-                + " ator ap, "
-                + " ator ac, "
-                + " genero g, "
+                + " d.id idDVD,"
+                + " d.titulo tituloDVD,"
+                + " d.anoLancamento anoLancamentoDVD,"
+                + " d.dataLancamento dataLancamentoDVD,"
+                + " d.duracao duracaoDVD,"
+                + " g.id idGenero,"
+                + " g.descricao descricaoGenero,"
+                + " c.id idClassificacao,"
+                + " c.descricao descricaoClassificacao,"
+                + " ap.id idAtorPrincipal,"
+                + " ap.nome nomeAtorPrincipal,"
+                + " ap.sobrenome sobrenomeAtorPrincipal,"
+                + " ap.dataEstreia dataEstreiaAtorPrincipal,"
+                + " ac.id idAtorCoadjuvante,"
+                + " ac.nome nomeAtorCoadjuvante,"
+                + " ac.sobrenome sobrenomeAtorCoadjuvante,"
+                + " ac.dataEstreia dataEstreiaAtorCoadjuvante"
+                + " FROM"
+                + " dvds d,"
+                + " ator ap,"
+                + " ator ac,"
+                + " genero g,"
                 + " classificacao c "
                 + "WHERE"
                 + " d.atorPrincipal_id = ap.id AND"
                 + " d.atorCoadjuvante_id = ac.id AND"
                 + " d.genero_id = g.id AND"
-                + " d.classificacao_id = c.id "
-                + "ORDER BY d.titulo, d.dataLancamento, d.duracao;");
+                + " d.classificacao_id = c.id"
+                + " ORDER BY d.titulo, d.dataLancamento;");
 
         ResultSet rs = stmt.executeQuery();
 
@@ -223,6 +223,7 @@ public class DVDsDAO extends DAO<DVDs> {
             ap = new Ator();
             ac = new Ator();
 
+            //aqui já ta vindo o id errado            
             d.setId(rs.getInt("idDVD"));
             d.setTitulo(rs.getString("tituloDVD"));
             d.setAnoLancamento(rs.getString("anoLancamentoDVD"));
@@ -248,6 +249,7 @@ public class DVDsDAO extends DAO<DVDs> {
             d.setClassificacao(c);
             c.setId(rs.getInt("idClassificacao"));
             c.setDescricao(rs.getString("descricaoClassificacao"));
+
         }
 
         rs.close();

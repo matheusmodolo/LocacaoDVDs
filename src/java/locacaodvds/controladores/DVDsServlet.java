@@ -76,10 +76,16 @@ public class DVDsServlet extends HttpServlet {
                 d.setAtorPrincipal(ap);
                 d.setAtorCoadjuvante(ac);
 
-                dao.salvar(d);
+                if (validarDVD(d) == true) {
+                    dao.salvar(d);
 
-                disp = request.getRequestDispatcher(
-                        "/formularios/dvds/listagem.jsp");
+                    disp = request.getRequestDispatcher(
+                            "/formularios/DVDs/listagem.jsp");
+                } else {
+                    request.setAttribute("dvd", d);
+                    disp = request.getRequestDispatcher(
+                            "/formularios/DVDs/erro.jsp");
+                }
 
             } else if (acao.equals("alterar")) {
 
@@ -106,10 +112,17 @@ public class DVDsServlet extends HttpServlet {
                 d.setAtorPrincipal(ap);
                 d.setAtorCoadjuvante(ac);
 
-                dao.atualizar(d);
+                //System.out.println(d);
+                if (validarDVD(d) == true) {
+                    dao.atualizar(d);
 
-                disp = request.getRequestDispatcher(
-                        "/formularios/dvds/listagem.jsp");
+                    disp = request.getRequestDispatcher(
+                            "/formularios/DVDs/listagem.jsp");
+                } else {
+                    request.setAttribute("dvd", d);
+                    disp = request.getRequestDispatcher(
+                            "/formularios/DVDs/erro.jsp");
+                }
 
             } else if (acao.equals("excluir")) {
 
@@ -151,6 +164,33 @@ public class DVDsServlet extends HttpServlet {
         if (disp != null) {
             disp.forward(request, response);
         }
+    }
+
+    public boolean validarDVD(DVDs validaDVD) {
+
+        boolean v = true;
+        int id = validaDVD.getId();
+        String t = validaDVD.getTitulo();
+        int al = Integer.parseInt(validaDVD.getAnoLancamento());
+        Date dl = validaDVD.getDataLancamento();
+        int d = Integer.parseInt(validaDVD.getDuracao());
+
+        if (id == 0) {
+            v = false;
+        }
+        if (t.length() > 45 || t.length() <= 0) {
+            v = false;
+        }
+        if (al < 1888) {
+            v = false;
+        }
+        if (dl == null) {
+            v = false;
+        }
+        if (d <= 0) {
+            v = false;
+        }
+        return v;
     }
 
     @Override

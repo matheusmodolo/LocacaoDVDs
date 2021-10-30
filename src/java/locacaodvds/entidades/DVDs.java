@@ -94,6 +94,5 @@ public class DVDs {
     public String toString() {
         return "DVDs{" + "id=" + id + ", titulo=" + titulo + ", anoLancamento=" + anoLancamento + ", dataLancamento=" + dataLancamento + ", duracao=" + duracao + ", genero=" + genero + ", classificacao=" + classificacao + ", atorPrincipal=" + atorPrincipal + ", atorCoadjuvante=" + atorCoadjuvante + '}';
     }
-    
-    
+
 }
