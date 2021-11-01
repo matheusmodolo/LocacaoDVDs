@@ -39,11 +39,11 @@ public class GeneroServlet extends HttpServlet {
                     dao.salvar(g);
 
                     disp = request.getRequestDispatcher(
-                            "/formularios/Generos/listagem.jsp");
+                            "/formularios/genero/listagem.jsp");
                 } else {
                     request.setAttribute("genero", g);
                     disp = request.getRequestDispatcher(
-                            "/formularios/Generos/erro.jsp");
+                            "/formularios/genero/erro.jsp");
                 }
 
             } else if (acao.equals("alterar")) {
@@ -59,11 +59,11 @@ public class GeneroServlet extends HttpServlet {
                     dao.atualizar(g);
 
                     disp = request.getRequestDispatcher(
-                            "/formularios/Generos/listagem.jsp");
+                            "/formularios/genero/listagem.jsp");
                 } else {
                     request.setAttribute("genero", g);
                     disp = request.getRequestDispatcher(
-                            "/formularios/Generos/erro.jsp");
+                            "/formularios/genero/erro.jsp");
                 }
 
 

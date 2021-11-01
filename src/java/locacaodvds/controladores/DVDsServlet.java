@@ -80,11 +80,11 @@ public class DVDsServlet extends HttpServlet {
                     dao.salvar(d);
 
                     disp = request.getRequestDispatcher(
-                            "/formularios/DVDs/listagem.jsp");
+                            "/formularios/dvds/listagem.jsp");
                 } else {
                     request.setAttribute("dvd", d);
                     disp = request.getRequestDispatcher(
-                            "/formularios/DVDs/erro.jsp");
+                            "/formularios/dvds/erro.jsp");
                 }
 
             } else if (acao.equals("alterar")) {
@@ -117,11 +117,11 @@ public class DVDsServlet extends HttpServlet {
                     dao.atualizar(d);
 
                     disp = request.getRequestDispatcher(
-                            "/formularios/DVDs/listagem.jsp");
+                            "/formularios/dvds/listagem.jsp");
                 } else {
                     request.setAttribute("dvd", d);
                     disp = request.getRequestDispatcher(
-                            "/formularios/DVDs/erro.jsp");
+                            "/formularios/dvds/erro.jsp");
                 }
 
             } else if (acao.equals("excluir")) {

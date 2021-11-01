@@ -50,7 +50,7 @@ public class AtorServlet extends HttpServlet {
                 } else {
                     request.setAttribute("ator", a);
                     disp = request.getRequestDispatcher(
-                            "/formularios/Atores/erro.jsp");
+                            "/formularios/ator/erro.jsp");
                 }
 
             } else if (acao.equals("alterar")) {
@@ -70,7 +70,7 @@ public class AtorServlet extends HttpServlet {
                     dao.atualizar(a);
 
                     disp = request.getRequestDispatcher(
-                            "/formularios/Atores/listagem.jsp");
+                            "/formularios/ator/listagem.jsp");
                 } else {
                     request.setAttribute("ator", a);
                     disp = request.getRequestDispatcher(

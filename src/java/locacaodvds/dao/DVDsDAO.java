@@ -210,9 +210,10 @@ public class DVDsDAO extends DAO<DVDs> {
                 + " d.atorPrincipal_id = ap.id AND"
                 + " d.atorCoadjuvante_id = ac.id AND"
                 + " d.genero_id = g.id AND"
-                + " d.classificacao_id = c.id"
-                + " ORDER BY d.titulo, d.dataLancamento;");
+                + " d.classificacao_id = c.id AND"
+                + " d.id = ?");
 
+        stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
 
         if (rs.next()) {

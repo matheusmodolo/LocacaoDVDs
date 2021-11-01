@@ -39,11 +39,11 @@ public class ClassificacaoServlet extends HttpServlet {
                     dao.salvar(c);
 
                     disp = request.getRequestDispatcher(
-                            "/formularios/Classificacoes/listagem.jsp");
+                            "/formularios/Classificacao/listagem.jsp");
                 } else {
                     request.setAttribute("classificacao", c);
                     disp = request.getRequestDispatcher(
-                            "/formularios/Classificacoes/erro.jsp");
+                            "/formularios/classificacao/erro.jsp");
                 }
 
             } else if (acao.equals("alterar")) {
@@ -59,11 +59,11 @@ public class ClassificacaoServlet extends HttpServlet {
                     dao.atualizar(c);
 
                     disp = request.getRequestDispatcher(
-                            "/formularios/Classificacoes/listagem.jsp");
+                            "/formularios/classificacao/listagem.jsp");
                 } else {
                     request.setAttribute("classificacao", c);
                     disp = request.getRequestDispatcher(
-                            "/formularios/Classificacoes/erro.jsp");
+                            "/formularios/classificacao/erro.jsp");
                 }
 
             } else if (acao.equals("excluir")) {
