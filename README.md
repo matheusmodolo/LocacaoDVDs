@@ -1,4 +1,3 @@
 # LocacaoDVDs
 
-Projeto criado à fins de estudo para a disciplina de Desenvolvimento de Softwares para a Web,
-do Bacharelado de Ciência da Computação
+Projeto do Capítulo 6 do livro "Desenvolvimento de Aplicações Web em Java e Outras Tecnologias (David Buzzato)".
